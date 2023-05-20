@@ -9,7 +9,7 @@ of random protocols.
 
 ## Experiment Data
 
-We include the data generated for the experiments in the [paper](TODO) as a
+We include the data generated for the experiments in the [paper](TODO) as
 `zip` files in the release artifacts. They include the generated protocols
 as `.broadcast` files, as well as the `experiment` files which include the
 outcome of the reachability algorithm.
@@ -135,7 +135,8 @@ The following parameters can be set in both modes, all of them are optional:
 
 ### Using the included Executable
 
-The executable can be found in the packages `
+The executable can be found as part of the release artifacts, named
+`random-broadcast`. It is compiled for Linux systems.
 
 #### Prerequisite
 
