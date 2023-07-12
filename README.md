@@ -161,11 +161,11 @@ Instead of building the included binary you can instead use the docker image.
 The program can be executed by simply using:
 
 ```bash
-export IMG=ghcr.io/splgb/cutoffs-for-broadcast-protocols:latest
+export IMG=ghcr.io/pleich/cutoffs-for-broadcast-protocols:latest
 docker run ${IMG} <cli-args>
 ```
 
-In this case, `ghcr.io/splgb/cutoffs-for-broadcast-protocols:latest` is the name
+In this case, `ghcr.io/pleich/cutoffs-for-broadcast-protocols:latest` is the name
 of the docker image and `<cli-args>` are the arguments you wish to pass to the
 program ([see](#cli-parameters)).
 
