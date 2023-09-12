@@ -1,23 +1,48 @@
-# Random Broadcast Protocols
+# Cutoffs for Broadcast Protocols: Experimental and Theoretical Results
 
-The project in this repository is used to generate random broadcast protocols
-and compute their cutoff. Experimental findings and more details on the theory
-behind broadcast protocols can be found in this [paper](TODO).
+This repository contains the artifacts for the paper
+["Cutoffs for Broadcast Protocols: Experimental and Theoretical
+Results"](TODO). It contains :
 
-It also outlines the details of the cutoff finding algorithm and the generation
-of random protocols.
+- the binary of the program used to generate and analyze random broadcast
+  protocols. See [release
+  assets](https://github.com/pleich/Cutoffs-for-Broadcast-Protocols/releases/tag/vmcai-24)
+  `random-broadcast`.
+- a Docker image with containing the compiled binary with all dependencies
+  installed. See
+  [packages](https://github.com/pleich/Cutoffs-for-Broadcast-Protocols/pkgs/container/cutoffs-for-broadcast-protocols).
+- the generated data sets that the figures and analysis in the paper are based
+  on. See [release
+  assets](https://github.com/pleich/Cutoffs-for-Broadcast-Protocols/releases/tag/vmcai-24)
+  `random-broadcast`.
+
+More details on the algorithm and broadcast protocols can be found in the paper,
+the rest of this file will explain the input & output file format as well as how
+to use our program.
 
 ## Experiment Data
 
 We include the data generated for the experiments in the [paper](TODO) as
-`zip` files in the release artifacts. They include the generated protocols
-as `.broadcast` files, as well as the `experiment` files which include the
-outcome of the reachability algorithm.
+`zip` files in the [release
+artifacts](https://github.com/pleich/Cutoffs-for-Broadcast-Protocols/releases/).
+They include the generated protocols as `.broadcast` files, as well as
+`experiment` files. The experiment files contain the cutoff result of the
+reachability algorithm as well as the execution time.
 
 A more detailed description of the file formats can be found in the section
 [File Formats](#file-formats).
 
+> **Disclaimer**:
+> Generating the data took several days of compute time on multiple compute
+> nodes. The produced files are very large and checking any set of the files
+> will take significant compute time.
+
 ## Using the Broadcast Protocol Tool
+
+> **Disclaimer**:
+> Both the binary and container image are only compiled for the Linux amd64
+> architecture as the authors did not have access to an ARM based machine
+> for testing compatibility with other architectures.
 
 In general, the program distinguishes two modes of operation:
 
@@ -26,7 +51,7 @@ In general, the program distinguishes two modes of operation:
   [see](#random-generation).
 
 - **File Checking**: This mode assumes the presence of existing broadcast
-  protocol files will read all of them from the given directory. For more
+  protocol files and will read all of them from the given directory. For more
   details [see](#file-checking).
 
 The modes are selected by setting the according CLI parameters.
@@ -65,7 +90,7 @@ the `-p/--processes`) option, with a fixed number of states (set via the
 `-s/--states` option) and actions (set via the `-a/--actions` option).
 
 Additionally, it requires providing a value for the `-f/--filename` flag,
-which specifies a prefix that will be present in all produced output files.
+which specifies a prefix that will be used for naming all produced output files.
 
 The program will then generate the following files:
 
@@ -91,7 +116,7 @@ Executing the program with these parameters will create 5 random processes with
 
 #### Additional Options
 
-By default the program will not allow a sending action to the last state. This
+By default, the program will not allow a sending action to the last state. This
 is a sufficient condition to exclude broadcast protocols with cutoff of $1$.
 (Mode details can be found in the [paper](TODO)). However, you can allow the
 generation of such examples by setting the `-d/--direct-to-last` to `true`.
@@ -183,7 +208,7 @@ docker run \
 ```
 
 Notice that this command uses a shell script as its entrypoint. This script will
-compress all files into a `.zip` archive, which is desirable, mainly when
+compress all files into a `.zip` archive, which is very useful when
 producing many processes.
 
 The same method can be used to check existing protocol files, however, the
@@ -207,13 +232,13 @@ protocol with $3$ states and $3$ actions in the following figure:
 
 The protocol matrix of the protocol above looks like:
 
-$
+$$
     \begin{pmatrix}
     a0!a1?a2? & a1!a0? & e \\
     a2! & a1?a2? & a0? \\
     e & a1? & a0?a2?
     \end{pmatrix}
-$
+$$
 
 ### Experiment Results
 
