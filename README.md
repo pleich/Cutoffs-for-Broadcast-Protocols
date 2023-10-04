@@ -168,12 +168,13 @@ The executable can be found as part of the release artifacts, named
 In order to use the program locally, the following packages will be necessary:
 
 - the [spdlog library](https://github.com/gabime/spdlog)
-- and the [boost libraries](https://www.boost.org/)
+- and the [boost libraries](https://www.boost.org/) `>=1.74`
 
 `spdlog` is used for logging and `boost` is used to generate
 the CLI interface.
 
-On a Debian-based systems that can be done using:
+On Ubuntu (`>= 22.04`, to obtain boost libraries `>=1.74`) that can be done 
+using:
 
 ```bash
 # Install the libraries
@@ -189,6 +190,16 @@ The program can be executed by simply using:
 export IMG=ghcr.io/pleich/cutoffs-for-broadcast-protocols:latest
 docker run ${IMG} <cli-args>
 ```
+
+> **Note:** 
+> If you want to load the image from a local archive, you can use
+> ```bash
+> docker load -i <path-to-archive>
+> ```
+> before executing docker run. 
+> The name of the image will stay the same 
+> (i.e., `ghcr.io/pleich/cutoffs-for-broadcast-protocols:latest`). 
+
 
 In this case, `ghcr.io/pleich/cutoffs-for-broadcast-protocols:latest` is the name
 of the docker image and `<cli-args>` are the arguments you wish to pass to the
